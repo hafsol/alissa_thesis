@@ -14,4 +14,11 @@ explore: cities {}
 
 explore: parks {}
 
-explore: species {}
+explore: species {
+  label: "Species Questions"
+  join: parks {
+    type: left_outer
+    sql_on: ${species.park_name} = ${parks.park_name} ;;
+    relationship: many_to_one
+  }
+}

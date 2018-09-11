@@ -17,6 +17,7 @@ view: parks {
   }
 
   dimension: park_code {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Park_Code ;;
   }
