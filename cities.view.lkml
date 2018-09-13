@@ -6,12 +6,12 @@ view: cities {
     sql: ${TABLE}.city ;;
   }
 
-  dimension: lat {
+  dimension: latitude {
     type: number
     sql: ${TABLE}.lat ;;
   }
 
-  dimension: lng {
+  dimension: longitude {
     type: number
     sql: ${TABLE}.lng ;;
   }
@@ -29,6 +29,13 @@ view: cities {
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;
+  }
+
+  dimension: location {
+    description: "The location of a city in terms of its latitude and longitude"
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude}g} ;;
   }
 
   measure: count {

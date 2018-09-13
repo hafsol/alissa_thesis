@@ -32,6 +32,13 @@ view: parks {
     sql: ${TABLE}.State ;;
   }
 
+  dimension: location {
+    description: "The location of a park in terms of latitude and longitude"
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [park_name]
