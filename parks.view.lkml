@@ -12,6 +12,7 @@ view: parks {
   }
 
   dimension: park_acres {
+    description: "Size of the national park in acres"
     type: number
     sql: ${TABLE}.Park_Acres ;;
   }
@@ -28,6 +29,7 @@ view: parks {
   }
 
   dimension: state {
+    map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
   }
@@ -39,8 +41,53 @@ view: parks {
     sql_longitude: ${longitude} ;;
   }
 
+  dimension: drill_state {
+
+  }
+
+  dimension: region {
+    description: "The region in which the park is located, as defined by the NPS"
+    case: {
+      when: {
+        sql: ${state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', 'AS', 'GU' ) ;;
+        label: "Pacific West"
+      }
+      when: {
+        sql: ${state} in ('MT', 'WY', 'UT', 'AZ', 'CO', 'NM', 'TX', 'OK') ;;
+        label: "Intermountain"
+      }
+      when: {
+        sql: ${state} in ('ND', 'SD', 'NE', 'KS', 'MN', 'IA', 'MO', 'AR', 'WI', 'MI', 'IL', 'IN', 'OH') ;;
+        label: "Midwest"
+      }
+      when: {
+        sql: ${state} in ('ME', 'NH', 'VT', 'NY', 'MA', 'CT', 'RI', 'PA', 'NJ', 'DE', 'MD', 'VA', 'WV') ;;
+        label: "Northeast"
+      }
+      when: {
+        sql: ${state} in ('KY', 'TN', 'LA', 'MS', 'AL', 'GA', 'FL', 'SC', 'NC', 'VI', 'PR') ;;
+        label: "Southeast"
+      }
+      when: {
+        sql: ${state} = 'AK' ;;
+        label: "Alaska"
+      }
+      when: {
+        sql: ${state} = 'DC' ;;
+        label: "National Capitol"
+      }
+      else: "Unknown"
+    }
+
+  }
+
   measure: count {
     type: count
-    drill_fields: [park_name]
   }
+
+  measure: total_acres {
+    type: sum
+    sql: ${park_acres} ;;
+  }
+
 }

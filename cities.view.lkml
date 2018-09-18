@@ -31,15 +31,16 @@ view: cities {
     sql: ${TABLE}.zip ;;
   }
 
+  dimension: city_state {
+    type:  string
+    sql: CONCAT(${city}, ", ", ${state_id}) ;;
+  }
+
   dimension: location {
     description: "The location of a city in terms of its latitude and longitude"
     type: location
     sql_latitude: ${latitude} ;;
-    sql_longitude: ${longitude}g} ;;
+    sql_longitude: ${longitude} ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [state_name]
-  }
 }

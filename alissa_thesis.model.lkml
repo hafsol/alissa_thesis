@@ -10,9 +10,11 @@ datagroup: alissa_thesis_default_datagroup {
 
 persist_with: alissa_thesis_default_datagroup
 
-explore: cities {}
+explore: cities {
+}
 
-explore: parks {}
+explore: parks {
+}
 
 explore: species {
   label: "Species Questions"

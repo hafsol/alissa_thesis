@@ -72,8 +72,11 @@ view: species {
     sql: ${TABLE}.Seasonality ;;
   }
 
+## measures
+
   measure: count {
     type: count
     drill_fields: [species_id, scientific_name, park_name]
   }
+
 }
