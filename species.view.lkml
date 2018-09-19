@@ -84,6 +84,15 @@ view: species {
     drill_fields: [species_drill*]
   }
 
+  measure: count_species_endangered{
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.conservation_status
+      value: "Endangered"
+    }
+  }
+
 
   set:  species_drill {
     fields: [

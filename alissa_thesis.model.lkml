@@ -23,4 +23,9 @@ explore: species {
     sql_on: ${species.park_name} = ${parks.park_name} ;;
     relationship: many_to_one
   }
+  join: park_acre_ranking {
+    type: inner
+    sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
+    relationship: one_to_one
+  }
 }
