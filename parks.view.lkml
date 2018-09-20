@@ -26,6 +26,16 @@ view: parks {
   dimension: park_name {
     type: string
     sql: ${TABLE}.Park_Name ;;
+    link: {
+      label: "View park profile"
+      url: "https://productday.dev.looker.com/dashboards/221"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+    link: {
+      label: "View the profile for this park on www.nps.gov"
+      url: "https://www.nps.gov/{{ parks.park_code._value }}/index.htm"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.nps.gov"
+    }
   }
 
   dimension: state {
@@ -49,31 +59,31 @@ view: parks {
     description: "The region in which the park is located, as defined by the NPS"
     case: {
       when: {
-        sql: ${state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', 'AS', 'GU' ) ;;
+        sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', 'AS', 'GU' ) ;;
         label: "Pacific West"
       }
       when: {
-        sql: ${state} in ('MT', 'WY', 'UT', 'AZ', 'CO', 'NM', 'TX', 'OK') ;;
+        sql: ${parks.state} in ('MT', 'WY', 'UT', 'AZ', 'CO', 'NM', 'TX', 'OK') ;;
         label: "Intermountain"
       }
       when: {
-        sql: ${state} in ('ND', 'SD', 'NE', 'KS', 'MN', 'IA', 'MO', 'AR', 'WI', 'MI', 'IL', 'IN', 'OH') ;;
+        sql: ${parks.state} in ('ND', 'SD', 'NE', 'KS', 'MN', 'IA', 'MO', 'AR', 'WI', 'MI', 'IL', 'IN', 'OH') ;;
         label: "Midwest"
       }
       when: {
-        sql: ${state} in ('ME', 'NH', 'VT', 'NY', 'MA', 'CT', 'RI', 'PA', 'NJ', 'DE', 'MD', 'VA', 'WV') ;;
+        sql: ${parks.state} in ('ME', 'NH', 'VT', 'NY', 'MA', 'CT', 'RI', 'PA', 'NJ', 'DE', 'MD', 'VA', 'WV') ;;
         label: "Northeast"
       }
       when: {
-        sql: ${state} in ('KY', 'TN', 'LA', 'MS', 'AL', 'GA', 'FL', 'SC', 'NC', 'VI', 'PR') ;;
+        sql: ${parks.state} in ('KY', 'TN', 'LA', 'MS', 'AL', 'GA', 'FL', 'SC', 'NC', 'VI', 'PR') ;;
         label: "Southeast"
       }
       when: {
-        sql: ${state} = 'AK' ;;
+        sql: ${parks.state} = 'AK' ;;
         label: "Alaska"
       }
       when: {
-        sql: ${state} = 'DC' ;;
+        sql: ${parks.state} = 'DC' ;;
         label: "National Capitol"
       }
       else: "Unknown"

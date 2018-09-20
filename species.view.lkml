@@ -55,6 +55,16 @@ view: species {
   dimension: park_name {
     type: string
     sql: ${TABLE}.Park_Name ;;
+    link: {
+      label: "View park profile"
+      url: "https://productday.dev.looker.com/dashboards/221"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+    link: {
+      label: "View the profile for this park on www.nps.gov"
+      url: "https://www.nps.gov/{{ parks.park_code._value }}/index.htm"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.nps.gov"
+    }
   }
 
   dimension: record_status {
