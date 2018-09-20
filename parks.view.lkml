@@ -28,7 +28,7 @@ view: parks {
     sql: ${TABLE}.Park_Name ;;
     link: {
       label: "View park profile"
-      url: "https://productday.dev.looker.com/dashboards/221"
+      url: "https://productday.dev.looker.com/dashboards/221" # need to figure out how to do this
       icon_url: "https://looker.com/favicon.ico"
     }
     link: {
@@ -49,10 +49,6 @@ view: parks {
     type: location
     sql_latitude: ${latitude} ;;
     sql_longitude: ${longitude} ;;
-  }
-
-  dimension: drill_state {
-
   }
 
   dimension: region {
@@ -86,7 +82,7 @@ view: parks {
         sql: ${parks.state} = 'DC' ;;
         label: "National Capitol"
       }
-      else: "Unknown"
+      else: "Multiple States"
     }
 
   }
@@ -94,6 +90,12 @@ view: parks {
   measure: count {
     type: count
   }
+
+  measure: park_count {
+    type: count_distinct
+    sql: ${park_code} ;;
+  }
+
 
   measure: total_acres {
     type: sum
