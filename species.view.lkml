@@ -18,14 +18,17 @@ view: species {
   }
 
   dimension: common_names {
+    label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
   }
+
 
   dimension: conservation_status {
     type: string
     sql: ${TABLE}.Conservation_Status ;;
   }
+
 
   dimension: family {
     type: string
@@ -75,6 +78,10 @@ view: species {
   dimension: scientific_name {
     type: string
     sql: ${TABLE}.Scientific_Name ;;
+    html:
+    {{ linked_value }}
+    <a href="https://www.google.com/search?q={{ value }}" target="_new">
+    <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
   }
 
   dimension: seasonality {
@@ -94,7 +101,7 @@ view: species {
     drill_fields: [species_drill*]
   }
 
-  measure: count_species_endangered{
+  measure: count_species_endangered {
     type: count
     drill_fields: [species_drill*]
     filters: {

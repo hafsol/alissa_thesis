@@ -1,22 +1,6 @@
 view: parks {
   sql_table_name: biodiversity_in_parks.parks ;;
 
-  dimension: latitude {
-    type: number
-    sql: ${TABLE}.Latitude ;;
-  }
-
-  dimension: longitude {
-    type: number
-    sql: ${TABLE}.Longitude ;;
-  }
-
-  dimension: park_acres {
-    description: "Size of the national park in acres"
-    type: number
-    sql: ${TABLE}.Park_Acres ;;
-  }
-
   dimension: park_code {
     primary_key: yes
     type: string
@@ -38,7 +22,26 @@ view: parks {
     }
   }
 
+  dimension: latitude {
+    type: number
+    sql: ${TABLE}.Latitude ;;
+  }
+
+  dimension: longitude {
+    type: number
+    sql: ${TABLE}.Longitude ;;
+  }
+
+  dimension: park_acres {
+    group_label: "Geography"
+    description: "Size of the national park in acres"
+    type: number
+    sql: ${TABLE}.Park_Acres ;;
+  }
+
   dimension: state {
+    description: "The US state in which a park is located"
+    group_label: "Geography"
     map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
@@ -46,6 +49,7 @@ view: parks {
 
   dimension: location {
     description: "The location of a park in terms of latitude and longitude"
+    group_label: "Geography"
     type: location
     sql_latitude: ${latitude} ;;
     sql_longitude: ${longitude} ;;
@@ -53,6 +57,7 @@ view: parks {
 
   dimension: region {
     description: "The region in which the park is located, as defined by the NPS"
+    group_label: "Geography"
     case: {
       when: {
         sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', 'AS', 'GU' ) ;;
@@ -84,7 +89,6 @@ view: parks {
       }
       else: "Multiple States"
     }
-
   }
 
   measure: count {
@@ -92,12 +96,14 @@ view: parks {
   }
 
   measure: park_count {
+    label: "Number of Parks"
     type: count_distinct
     sql: ${park_code} ;;
   }
 
 
   measure: total_acres {
+    label: "Acreage of the park"
     type: sum
     sql: ${park_acres} ;;
   }

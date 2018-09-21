@@ -11,9 +11,9 @@ view: park_acre_ranking {
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: [detail*]
   }
-
 
 ## dimensions
 
@@ -35,4 +35,5 @@ view: park_acre_ranking {
   set: detail {
     fields: [park_code, park_acres, rank]
   }
+
 }
