@@ -185,7 +185,7 @@ view: parks {
           {% elsif value == "REDW" %}
             <img src="https://www.nps.gov/common/uploads/banner_image/pwr/secondary/E7886391-B283-E7E6-3AB2428BB1035429.jpg" style="width:1500px;height:500px;" />
           {% elsif value == "ROMO" %}
-           <img src="https://www.nps.gov/common/uploads/banner_image/imr/homepage/4A4314B5-1DD8-B71B-0B54368EB2003033" style="width:1500px;height:500px;" />
+           <img src="https://www.nps.gov/common/uploads/banner_image/imr/homepage/4A4314B5-1DD8-B71B-0B54368EB2003033.jpg" style="width:1500px;height:500px;" />
           {% elsif value == "SAGU" %}
            <img src="https://www.nps.gov/common/uploads/banner_image/imr/homepage/5D2733EE-1DD8-B71B-0B24869B10725BC0.jpg" style="width:1500px;height:500px;" />
           {% elsif value == "SEKI" %}
