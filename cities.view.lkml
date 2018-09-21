@@ -6,12 +6,12 @@ view: cities {
     sql: ${TABLE}.city ;;
   }
 
-  dimension: lat {
+  dimension: latitude {
     type: number
     sql: ${TABLE}.lat ;;
   }
 
-  dimension: lng {
+  dimension: longitude {
     type: number
     sql: ${TABLE}.lng ;;
   }
@@ -31,8 +31,16 @@ view: cities {
     sql: ${TABLE}.zip ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [state_name]
+  dimension: city_state {
+    type:  string
+    sql: CONCAT(${city}, ", ", ${state_id}) ;;
   }
+
+  dimension: location {
+    description: "The location of a city in terms of its latitude and longitude"
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
 }

@@ -18,14 +18,17 @@ view: species {
   }
 
   dimension: common_names {
+    label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
   }
+
 
   dimension: conservation_status {
     type: string
     sql: ${TABLE}.Conservation_Status ;;
   }
+
 
   dimension: family {
     type: string
@@ -55,6 +58,16 @@ view: species {
   dimension: park_name {
     type: string
     sql: ${TABLE}.Park_Name ;;
+    link: {
+      label: "View park profile"
+      url: "https://productday.dev.looker.com/dashboards/221"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+    link: {
+      label: "View the profile for this park on www.nps.gov"
+      url: "https://www.nps.gov/{{ parks.park_code._value }}/index.htm"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.nps.gov"
+    }
   }
 
   dimension: record_status {
@@ -65,6 +78,10 @@ view: species {
   dimension: scientific_name {
     type: string
     sql: ${TABLE}.Scientific_Name ;;
+    html:
+    {{ linked_value }}
+    <a href="https://www.google.com/search?q={{ value }}" target="_new">
+    <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
   }
 
   dimension: seasonality {
@@ -72,8 +89,33 @@ view: species {
     sql: ${TABLE}.Seasonality ;;
   }
 
+
+## measures
+
   measure: count {
     type: count
-    drill_fields: [species_id, scientific_name, park_name]
   }
+
+  measure: count_species {
+    type: count
+    drill_fields: [species_drill*]
+  }
+
+  measure: count_species_endangered {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.conservation_status
+      value: "Endangered"
+    }
+  }
+
+
+  set:  species_drill {
+    fields: [
+      common_names,
+      scientific_name
+    ]
+  }
+
 }

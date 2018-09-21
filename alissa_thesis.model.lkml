@@ -10,8 +10,22 @@ datagroup: alissa_thesis_default_datagroup {
 
 persist_with: alissa_thesis_default_datagroup
 
-explore: cities {}
+explore: cities {
+}
 
-explore: parks {}
+explore: parks {
+}
 
-explore: species {}
+explore: species {
+  label: "Species Questions"
+  join: parks {
+    type: left_outer
+    sql_on: ${species.park_name} = ${parks.park_name} ;;
+    relationship: many_to_one
+  }
+  join: park_acre_ranking {
+    type: inner
+    sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
+    relationship: one_to_one
+  }
+}
