@@ -13,7 +13,10 @@ persist_with: alissa_thesis_default_datagroup
 explore: cities {
 }
 
+explore: location_select {}
+
 explore: parks {
+  hidden: yes
 }
 
 explore: species {
@@ -27,5 +30,10 @@ explore: species {
     type: inner
     sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
     relationship: one_to_one
+  }
+  join: location_select {
+    type: left_outer
+    sql_on: ${location_select.state_id} = ${parks.state} ;;
+    relationship: many_to_one
   }
 }

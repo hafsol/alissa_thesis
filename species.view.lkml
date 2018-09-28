@@ -17,6 +17,31 @@ view: species {
     sql: ${TABLE}.Category ;;
   }
 
+  dimension: order {
+    group_label: "Scientific Classification"
+    description: "The scientific order the species belongs to."
+    type: string
+    sql: ${TABLE}.`Order` ;;
+  }
+
+  dimension: family {
+    group_label: "Scientific Classification"
+    description: "The scientific family the species belongs to."
+    type: string
+    sql: ${TABLE}.Family ;;
+  }
+
+  dimension: scientific_name {
+    group_label: "Scientific Classification"
+    description: "Full scientific species name"
+    type: string
+    sql: ${TABLE}.Scientific_Name ;;
+    html:
+    {{ linked_value }}
+    <a href="https://www.google.com/search?q={{ value }}" target="_new">
+    <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
+  }
+
   dimension: common_names {
     label: "Common Name"
     type: string
@@ -25,17 +50,14 @@ view: species {
 
 
   dimension: conservation_status {
+    description: "IUCN species conservation status."
     type: string
     sql: ${TABLE}.Conservation_Status ;;
   }
 
 
-  dimension: family {
-    type: string
-    sql: ${TABLE}.Family ;;
-  }
-
   dimension: ignore_me {
+    hidden: yes
     type: string
     sql: ${TABLE}.ignore_me ;;
   }
@@ -50,12 +72,9 @@ view: species {
     sql: ${TABLE}.Occurrence ;;
   }
 
-  dimension: order {
-    type: string
-    sql: ${TABLE}.`Order` ;;
-  }
 
   dimension: park_name {
+    description: "Park in which the species appears."
     type: string
     sql: ${TABLE}.Park_Name ;;
     link: {
@@ -75,16 +94,8 @@ view: species {
     sql: ${TABLE}.Record_Status ;;
   }
 
-  dimension: scientific_name {
-    type: string
-    sql: ${TABLE}.Scientific_Name ;;
-    html:
-    {{ linked_value }}
-    <a href="https://www.google.com/search?q={{ value }}" target="_new">
-    <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
-  }
-
   dimension: seasonality {
+    description: "When the species can be found in the park. Null (blank) if the species is found there year-round."
     type: string
     sql: ${TABLE}.Seasonality ;;
   }
