@@ -11,9 +11,12 @@ datagroup: alissa_thesis_default_datagroup {
 persist_with: alissa_thesis_default_datagroup
 
 explore: cities {
+  hidden: yes
 }
 
-explore: location_select {}
+explore: your_location {
+  hidden: yes
+}
 
 explore: parks {
   hidden: yes
@@ -31,9 +34,9 @@ explore: species {
     sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
     relationship: one_to_one
   }
-  join: location_select {
+  join: your_location {
     type: left_outer
-    sql_on: ${location_select.state_id} = ${parks.state} ;;
+    sql_on: ${your_location.state_id} = ${parks.state} ;;
     relationship: many_to_one
   }
 }

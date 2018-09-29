@@ -46,6 +46,11 @@ view: species {
     label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
+    link: {
+      label: "View species profile"
+      url: "https://productday.dev.looker.com/dashboards/231?Species={{ value | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
   }
 
 
@@ -101,6 +106,7 @@ view: species {
   }
 
 
+
 ## measures
 
   measure: count {
@@ -112,12 +118,67 @@ view: species {
     drill_fields: [species_drill*]
   }
 
+
   measure: count_species_endangered {
     type: count
     drill_fields: [species_drill*]
     filters: {
       field: species.conservation_status
       value: "Endangered"
+    }
+  }
+
+  measure: count_mammals {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Mammal"
+    }
+  }
+
+  measure: count_birds {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Bird"
+    }
+  }
+
+  measure: count_plants {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Vascular Plant"
+    }
+  }
+
+  measure: count_fish {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Fish"
+    }
+  }
+
+  measure: count_amphibian {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Amphibian"
+    }
+  }
+
+  measure: count_insect {
+    type: count
+    drill_fields: [species_drill*]
+    filters: {
+      field: species.category
+      value: "Insect"
     }
   }
 

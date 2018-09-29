@@ -41,19 +41,22 @@ view: parks {
 
   dimension: state {
     description: "The US state in which a park is located"
+    drill_fields: [drill_state*]
     group_label: "Geography"
     map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
   }
 
-  dimension: location {
+  dimension: park_location {
     description: "The location of a park in terms of latitude and longitude"
     group_label: "Geography"
     type: location
     sql_latitude: ${latitude} ;;
     sql_longitude: ${longitude} ;;
   }
+
+
 
   dimension: region {
     description: "The region in which the park is located, as defined by the NPS"
@@ -212,6 +215,12 @@ view: parks {
     ;;
   }
 
+  # images showing animals
+
+  # define dimension has_grizzly_bears yesno
+
+  # define dimension has_mountain_lions yesno
+
   measure: count {
     type: count
   }
@@ -228,6 +237,15 @@ view: parks {
     label: "Acreage of the park"
     type: sum
     sql: ${park_acres} ;;
+  }
+
+  set: drill_state {
+    fields: [
+      park_name,
+      park_acres,
+      park_code_images,
+      species.count
+    ]
   }
 
 }

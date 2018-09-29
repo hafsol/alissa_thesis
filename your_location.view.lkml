@@ -1,7 +1,8 @@
-view: location_select {
+view: your_location {
   derived_table: {
     sql: SELECT city, state_id, lat, lng, CONCAT(city, ", ", state_id) AS city_state
        FROM `lookerdata.biodiversity_in_parks.cities`
+       WHERE {% condition enter_your_location %} CONCAT(city, ", ", state_id) {% endcondition %}
        ;;
   }
 
@@ -30,7 +31,7 @@ view: location_select {
     sql: ${TABLE}.city_state ;;
   }
 
-  dimension: location {
+  dimension: city_location {
     type: location
     sql_latitude: ${TABLE}.lat ;;
     sql_longitude: ${TABLE}.lng ;;
@@ -41,7 +42,5 @@ view: location_select {
     suggest_explore: cities
     suggest_dimension: cities.city_state
   }
-
-
 
 }
