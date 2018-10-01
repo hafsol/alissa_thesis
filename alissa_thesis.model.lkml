@@ -14,10 +14,6 @@ explore: cities {
   hidden: yes
 }
 
-explore: your_location {
-  hidden: yes
-}
-
 explore: parks {
   hidden: yes
 }
@@ -33,10 +29,5 @@ explore: species {
     type: inner
     sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
     relationship: one_to_one
-  }
-  join: your_location {
-    type: left_outer
-    sql_on: ${your_location.state_id} = ${parks.state} ;;
-    relationship: many_to_one
   }
 }

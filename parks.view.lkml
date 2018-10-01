@@ -32,6 +32,13 @@ view: parks {
     sql: ${TABLE}.Longitude ;;
   }
 
+  dimension: distance_between_parks {
+    type: distance
+    start_location_field: parks.park_location
+    end_location_field: parks.park_location
+    units: miles
+  }
+
   dimension: park_acres {
     group_label: "Geography"
     description: "Size of the national park in acres"
@@ -55,8 +62,6 @@ view: parks {
     sql_latitude: ${latitude} ;;
     sql_longitude: ${longitude} ;;
   }
-
-
 
   dimension: region {
     description: "The region in which the park is located, as defined by the NPS"
@@ -186,7 +191,7 @@ view: parks {
           {% elsif value == "PINN" %}
            <img src="https://www.nps.gov/common/uploads/banner_image/pwr/homepage/2913AF89-1DD8-B71B-0B428CC0594DA1F3.jpg" style="width:1500px;height:500px;" />
           {% elsif value == "REDW" %}
-            <img src="https://www.nps.gov/common/uploads/banner_image/pwr/secondary/E7886391-B283-E7E6-3AB2428BB1035429.jpg" style="width:1500px;height:500px;" />
+            <img src="https://www.nps.gov/common/uploads/banner_image/pwr/secondary/E7886391-B283-E7E6-3AB2428BB1035429.jpg" style="width:1500px;height:400px;" />
           {% elsif value == "ROMO" %}
            <img src="https://www.nps.gov/common/uploads/banner_image/imr/homepage/4A4314B5-1DD8-B71B-0B54368EB2003033.jpg" style="width:1500px;height:500px;" />
           {% elsif value == "SAGU" %}

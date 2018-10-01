@@ -72,6 +72,11 @@ view: species {
     sql: ${TABLE}.Nativeness ;;
   }
 
+  dimension: is_native {
+    type: yesno
+    sql: ${nativeness} = "Native" ;;
+  }
+
   dimension: occurrence {
     type: string
     sql: ${TABLE}.Occurrence ;;
@@ -180,6 +185,20 @@ view: species {
       field: species.category
       value: "Insect"
     }
+  }
+
+  measure: native_population {
+    type: count
+    filters: {
+      field: species.nativeness
+      value: "Native"
+    }
+  }
+
+  measure: percent_native {
+    type: number
+    sql: ${native_population} / ${count_species} ;;
+    value_format_name: percent_2
   }
 
 
