@@ -32,13 +32,6 @@ view: parks {
     sql: ${TABLE}.Longitude ;;
   }
 
-  dimension: distance_between_parks {
-    type: distance
-    start_location_field: parks.park_location
-    end_location_field: parks.park_location
-    units: miles
-  }
-
   dimension: park_acres {
     group_label: "Geography"
     description: "Size of the national park in acres"
