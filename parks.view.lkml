@@ -12,7 +12,7 @@ view: parks {
     sql: ${TABLE}.Park_Name ;;
     link: {
       label: "View park profile"
-      url: "https://productday.dev.looker.com/dashboards/221?Park={{ value | url_encode }}" # need to figure out how to do this
+      url: "https://productday.dev.looker.com/dashboards/221?Park={{ value | url_encode }}"
       icon_url: "https://looker.com/favicon.ico"
     }
     link: {
@@ -219,10 +219,13 @@ view: parks {
 
   # define dimension has_mountain_lions yesno
 
+  # define largest_parks
+
+  # define smallest_parks
+
   measure: count {
     type: count
   }
-
 
   measure: park_count {
     label: "Number of Parks"
@@ -236,6 +239,7 @@ view: parks {
     type: sum
     sql: ${park_acres} ;;
   }
+
 
   set: drill_state {
     fields: [
