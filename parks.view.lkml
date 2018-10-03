@@ -91,6 +91,7 @@ view: parks {
       }
       else: "Multiple States"
     }
+#    drill_fields: []
   }
 
   dimension: park_code_images {
@@ -214,11 +215,28 @@ view: parks {
     ;;
   }
 
+  dimension: park_dropdown {
+    type: string
+    sql: ${park_name} ;;
+    html:
+          <div style="width:100%; text-align: centre;"> <details>
+          <summary style="outline:none">{{ park_name._linked_value }}</summary>
+          <b>State</b>: {{ parks.state }}
+          <br>
+          <b>Region</b>: {{ parks.region }}
+          <br>
+          <b>Size Ranking</b>: {{ park_acre_ranking.rank}}
+          <br>
+          <b>Acreage</b>: {{ parks.total_acres }}
+          <br>
+          <b>Total Count of Species</b>: {{ species.count }}
+
+          </details>
+          </div>
+          ;;
+  }
+
   # images showing animals
-
-  # define dimension has_grizzly_bears yesno
-
-  # define dimension has_mountain_lions yesno
 
   # define largest_parks
 

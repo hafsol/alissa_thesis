@@ -84,12 +84,12 @@ view: species {
 
 
   dimension: park_name {
-    description: "Park in which the species appears."
+    hidden: yes
     type: string
     sql: ${TABLE}.Park_Name ;;
     link: {
       label: "View park profile"
-      url: "https://productday.dev.looker.com/dashboards/221"
+      url: "https://productday.dev.looker.com/dashboards/221?Park={{ value | url_encode }}"
       icon_url: "https://looker.com/favicon.ico"
     }
     link: {
@@ -134,6 +134,7 @@ view: species {
   }
 
   measure: count_mammals {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -143,6 +144,7 @@ view: species {
   }
 
   measure: count_birds {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -152,6 +154,7 @@ view: species {
   }
 
   measure: count_plants {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -161,6 +164,7 @@ view: species {
   }
 
   measure: count_fish {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -170,6 +174,7 @@ view: species {
   }
 
   measure: count_amphibian {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -179,6 +184,7 @@ view: species {
   }
 
   measure: count_insect {
+    group_label: "Numbers by Category"
     type: count
     drill_fields: [species_drill*]
     filters: {
