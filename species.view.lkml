@@ -202,16 +202,18 @@ view: species {
   }
 
   measure: percent_native {
+    drill_fields: [species_drill*]
     type: number
     sql: ${native_population} / ${count_species} ;;
     value_format_name: percent_2
   }
 
-
   set:  species_drill {
     fields: [
       common_names,
-      scientific_name
+      scientific_name,
+      is_native,
+      conservation_status
     ]
   }
 

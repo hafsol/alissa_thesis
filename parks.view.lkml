@@ -58,6 +58,7 @@ view: parks {
   }
 
   dimension: region {
+    drill_fields: [drill_region*]
     description: "The region in which the park is located, as defined by the NPS"
     group_label: "Geography"
     case: {
@@ -248,17 +249,34 @@ view: parks {
 
   measure: park_count {
     label: "Number of Parks"
+    drill_fields: [park_drill*]
     type: count_distinct
     sql: ${park_code} ;;
   }
 
 
   measure: total_acres {
+    drill_fields: [drill_state*, drill_region*]
     label: "Acreage of the park"
     type: sum
     sql: ${park_acres} ;;
   }
 
+  set: park_drill {
+    fields: [
+      park_name,
+      state,
+      region,
+      park_acres
+    ]
+  }
+
+  set: drill_region {
+    fields: [
+      state,
+      park_name,
+    ]
+  }
 
   set: drill_state {
     fields: [
