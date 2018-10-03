@@ -31,3 +31,8 @@ explore: species {
     relationship: one_to_one
   }
 }
+
+map_layer: natparks {
+  file: "natparks.topojson"
+  property_key: "UNIT_CODE"
+}

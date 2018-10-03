@@ -2,6 +2,7 @@ view: parks {
   sql_table_name: biodiversity_in_parks.parks ;;
 
   dimension: park_code {
+    map_layer_name: natparks
     primary_key: yes
     type: string
     sql: ${TABLE}.Park_Code ;;
