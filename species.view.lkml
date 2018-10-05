@@ -36,6 +36,24 @@ view: species {
     ;;
   }
 
+  dimension: category_image {
+    type: string
+    sql: ${category} ;;
+    html:
+        {% if value == "Bird" %}
+          <img src="http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/1024/22271-bird-icon.png" style="width:50px;height:50px;" />
+        {% elsif value == "Vascular Plant" %}
+          <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:65px;" />
+        {% elsif value == "Mammal" %}
+          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:50px;height:50px;" />
+        {% elsif value == "Fish" %}
+          <img src="https://img.clipartxtras.com/599b9cf1ac083af16ca129f735eaff63_royalty-free-rainbow-trout-clip-art-vector-images-illustrations-trout-fish-clipart_858-1024.jpeg" style="width:50px;height:50px;" />
+        {% else %}
+          {{value}}
+        {% endif %}
+    ;;
+  }
+
   dimension: order {
     group_label: "Scientific Classification"
     description: "The scientific order the species belongs to."
