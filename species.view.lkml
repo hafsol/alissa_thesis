@@ -40,17 +40,18 @@ view: species {
     {{ linked_value }}
     <a href="https://www.google.com/search?q={{ value }}" target="_new">
     <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
+    link: {
+      label: "View species profile"
+      url: "https://productday.dev.looker.com/dashboards/231?Species={{ value | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
+
   }
 
   dimension: common_names {
     label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
-    link: {
-      label: "View species profile"
-      url: "https://productday.dev.looker.com/dashboards/231?Species={{ value | url_encode }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
   }
 
 
@@ -109,8 +110,6 @@ view: species {
     type: string
     sql: ${TABLE}.Seasonality ;;
   }
-
-
 
 ## measures
 

@@ -22,15 +22,25 @@ view: park_acre_ranking {
     sql: ${TABLE}.park_code ;;
   }
 
+  dimension: rank {
+    type: number
+    sql: ${TABLE}.rank ;;
+  }
+
+  parameter: max_rank {
+    type: number
+  }
+
+  dimension: rank_limit {
+    type: number
+    sql: {% parameter max_rank %} ;;
+  }
+
   dimension: park_acres {
     type: number
     sql: ${TABLE}.park_acres ;;
   }
 
-  dimension: rank {
-    type: number
-    sql: ${TABLE}.rank ;;
-  }
 
   set: detail {
     fields: [park_code, park_acres, rank]

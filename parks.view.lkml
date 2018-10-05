@@ -63,7 +63,7 @@ view: parks {
     group_label: "Geography"
     case: {
       when: {
-        sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', 'AS', 'GU' ) ;;
+        sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', "CA, NV", 'AS', 'GU' ) ;;
         label: "Pacific West"
       }
       when: {
