@@ -15,6 +15,25 @@ view: species {
   dimension: category {
     type: string
     sql: ${TABLE}.Category ;;
+    html:
+        {% if value == "Crab/Lobster/Shrimp" %}
+          <p style="color: black; background-color: #F39E70; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Algae" %}
+          <p style="color: black; background-color: #659B5E; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Nonvascular Plant" %}
+          <p style="color: white; background-color: #556F44; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Vascular Plant" %}
+          <p style="color: black; background-color: #95BF74; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Spider/Scorpion" %}
+          <p style="color: black; background-color: #daa520; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Fungi" %}
+          <p style="color: black; background-color: #c0c1c4; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Fish" %}
+          <p style="color: black; background-color: #48c5ce; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% else %}
+          {{value}}
+        {% endif %}
+    ;;
   }
 
   dimension: order {
