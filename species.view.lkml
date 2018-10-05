@@ -76,6 +76,13 @@ view: species {
   dimension: is_native {
     type: yesno
     sql: ${nativeness} = "Native" ;;
+    html:
+          {% if value == 'Yes' %}
+            <p style="color: black; background-color: #58BC82; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+          {% else %}
+            <p style="color: white; background-color: #bc5858; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+          {% endif %}
+    ;;
   }
 
   dimension: occurrence {

@@ -2,6 +2,7 @@ view: park_acre_ranking {
   derived_table: {
     sql: SELECT park_code, park_acres,
       RANK() OVER (ORDER BY park_acres DESC) as rank
+      ,RANK() OVER (PARTITION BY state ORDER BY park_acres DESC) as state_rank
 
       FROM `lookerdata.biodiversity_in_parks.parks`
        ;;
@@ -25,6 +26,11 @@ view: park_acre_ranking {
   dimension: rank {
     type: number
     sql: ${TABLE}.rank ;;
+  }
+
+  dimension: state_rank {
+    type: number
+    sql: ${TABLE}.state_rank ;;
   }
 
   parameter: max_rank {
