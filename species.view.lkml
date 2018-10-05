@@ -71,6 +71,7 @@ view: species {
     label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
+    html: <p style="color: black; background-color: #D1BEB0; font-size: 140%; text-align:center">{{value}}</p> ;;
   }
 
 
