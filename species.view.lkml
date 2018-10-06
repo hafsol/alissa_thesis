@@ -30,6 +30,10 @@ view: species {
           <p style="color: black; background-color: #c0c1c4; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
         {% elsif value == "Fish" %}
           <p style="color: black; background-color: #48c5ce; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Mammal" %}
+          <p style="color: black; background-color: #b28931; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Bird" %}
+          <p style="color: black; background-color: #98cee0; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
         {% else %}
           {{value}}
         {% endif %}
@@ -45,7 +49,7 @@ view: species {
         {% elsif value == "Vascular Plant" %}
           <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:65px;" />
         {% elsif value == "Mammal" %}
-          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:50px;height:50px;" />
+          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:45px;height:45px;" />
         {% elsif value == "Fish" %}
           <img src="https://img.clipartxtras.com/599b9cf1ac083af16ca129f735eaff63_royalty-free-rainbow-trout-clip-art-vector-images-illustrations-trout-fish-clipart_858-1024.jpeg" style="width:50px;height:50px;" />
         {% else %}
