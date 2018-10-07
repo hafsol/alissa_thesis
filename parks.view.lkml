@@ -23,12 +23,23 @@ view: parks {
     }
   }
 
+  dimension: park_title {
+    hidden: yes
+    type: string
+    sql: ${park_name} ;;
+    html:
+      <p style="color: black; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+    ;;
+  }
+
   dimension: latitude {
+    hidden: yes
     type: number
     sql: ${TABLE}.Latitude ;;
   }
 
   dimension: longitude {
+    hidden: yes
     type: number
     sql: ${TABLE}.Longitude ;;
   }
@@ -217,6 +228,7 @@ view: parks {
   }
 
   dimension: park_dropdown {
+    hidden: yes
     type: string
     sql: ${park_name} ;;
     html:

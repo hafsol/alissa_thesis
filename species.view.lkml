@@ -34,6 +34,16 @@ view: species {
           <p style="color: black; background-color: #b28931; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
         {% elsif value == "Bird" %}
           <p style="color: black; background-color: #98cee0; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Insect" %}
+          <p style="color: white; background-color: #666666; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Amphibian" %}
+          <p style="color: black; background-color: #07f78f; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Invertebrate" %}
+          <p style="color: white; background-color: #b7312a; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Reptile" %}
+          <p style="color: white; background-color: #689900; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
+        {% elsif value == "Slug/Snail" %}
+          <p style="color: black; background-color: #e8bd25; font-size: 120%; font-weight: bold; text-align:center">{{value}}</p>
         {% else %}
           {{value}}
         {% endif %}
@@ -41,6 +51,7 @@ view: species {
   }
 
   dimension: category_image {
+    hidden: yes
     type: string
     sql: ${category} ;;
     html:
@@ -49,9 +60,21 @@ view: species {
         {% elsif value == "Vascular Plant" %}
           <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:65px;" />
         {% elsif value == "Mammal" %}
-          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:45px;height:45px;" />
+          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:40px;height:40px;" />
         {% elsif value == "Fish" %}
           <img src="https://img.clipartxtras.com/599b9cf1ac083af16ca129f735eaff63_royalty-free-rainbow-trout-clip-art-vector-images-illustrations-trout-fish-clipart_858-1024.jpeg" style="width:50px;height:50px;" />
+        {% elsif value == "Reptile" %}
+          <img src="https://img.clipartxtras.com/aad75f0c5dbe8bd2b5c01c67dde202f7_sea-turtle-clip-art-free-wikiclipart-turtle-clipart-png_750-388.png" style="width:60px;height:50px;"/>
+        {% elsif value == "Nonvascular Plant" %}
+          <img src="https://orig00.deviantart.net/4bfe/f/2017/005/3/b/liverwort_by_gryphrealms_arpg-daudeek.png" style="width:60px;height:50px;"/>
+        {% elsif value == "Amphibian" %}
+          <img src="https://b.kisscc0.com/20180705/ycw/kisscc0-the-tree-frog-amphibian-download-frog-coloured-5b3d99549b1035.3154820915307636046352.png" style="width:50px;height:50px;"/>
+        {% elsif value == "Insect" %}
+          <img src="https://i.pinimg.com/originals/eb/cb/ac/ebcbacda161594c9e75b47bbf07eac4e.png" style="width:50px;height:50px;"/>
+        {% elsif value == "Fungi" %}
+          <img src="https://mbtskoudsalg.com/images/mushrooms-clipart-1.jpg" style="width:50px;height:50px;"/>
+        {% elsif value == "Slug/Snail" %}
+          <img src="https://img00.deviantart.net/ec6e/i/2018/269/a/a/california_banana_slug__ariolimax_californicus__by_hyaenija-dch8hom.png" style="width:50px;height:45px;"/>
         {% else %}
           {{value}}
         {% endif %}
