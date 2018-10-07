@@ -30,11 +30,6 @@ explore: species {
     sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
     relationship: one_to_one
   }
-  join: park_acre_ranking_state {
-    type: inner
-    sql_on: ${park_acre_ranking_state.park_code} = ${park_acre_ranking.park_code} ;;
-    relationship: one_to_one
-  }
 }
 
 map_layer: natparks {
