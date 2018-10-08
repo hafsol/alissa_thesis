@@ -2,6 +2,8 @@ view: parks {
   sql_table_name: biodiversity_in_parks.parks ;;
 
   dimension: park_code {
+    description: "National Parks Service park code."
+    hidden: yes
     map_layer_name: natparks
     primary_key: yes
     type: string
@@ -9,6 +11,7 @@ view: parks {
   }
 
   dimension: park_name {
+    description: "The park's official name."
     type: string
     sql: ${TABLE}.Park_Name ;;
     link: {
@@ -45,31 +48,22 @@ view: parks {
   }
 
   dimension: park_acres {
-    group_label: "Geography"
-    description: "Size of the national park in acres"
+    hidden: yes
+    description: "Size of the national park in acres."
     type: number
     sql: ${TABLE}.Park_Acres ;;
   }
 
   dimension: state {
-    description: "The US state in which a park is located"
+    description: "The US state in which a park is located."
     drill_fields: [park_drill*]
     group_label: "Geography"
-    type: string
-    sql: ${TABLE}.State ;;
-  }
-
-  dimension: state2 {
-    description: "The US state in which a park is located"
-    drill_fields: [park_drill*]
-    group_label: "Geography"
-    map_layer_name: us_states
     type: string
     sql: ${TABLE}.State ;;
   }
 
   dimension: park_location {
-    description: "The location of a park in terms of latitude and longitude"
+    description: "The location of a park in terms of latitude and longitude."
     group_label: "Geography"
     type: location
     sql_latitude: ${latitude} ;;
@@ -78,7 +72,7 @@ view: parks {
 
   dimension: region {
     drill_fields: [park_drill*]
-    description: "The region in which the park is located, as defined by the NPS"
+    description: "The region in which the park is located, as defined by the NPS."
     group_label: "Geography"
     case: {
       when: {
@@ -115,6 +109,7 @@ view: parks {
   }
 
   dimension: park_code_images {
+    hidden: yes
     type: string
     sql: ${TABLE}.Park_Code ;;
     html: {% if value == "ACAD" %}
@@ -258,11 +253,13 @@ view: parks {
   }
 
   measure: count {
+    hidden: yes
     type: count
   }
 
   measure: park_count {
-    label: "Number of Parks"
+    label: "Park Count"
+    description: "Number of parks."
     drill_fields: [park_drill*]
     type: count_distinct
     sql: ${park_code} ;;
@@ -270,8 +267,9 @@ view: parks {
 
 
   measure: total_acres {
+    description: "A park's size in acres."
     drill_fields: [park_drill*]
-    label: "Acreage of the park"
+    label: "Size in Acres"
     type: sum
     sql: ${park_acres} ;;
   }

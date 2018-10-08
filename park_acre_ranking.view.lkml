@@ -19,30 +19,36 @@ view: park_acre_ranking {
 ## dimensions
 
   dimension: park_code {
+    description: "National Parks Service park code."
     type: string
     sql: ${TABLE}.park_code ;;
   }
 
   dimension: rank {
+    description: "A park's rank by size."
     type: number
     sql: ${TABLE}.rank ;;
   }
 
   dimension: state_rank {
+    description: "A park's rank by size within its state."
     type: number
     sql: ${TABLE}.state_rank ;;
   }
 
   parameter: max_rank {
+    hidden: yes
     type: number
   }
 
   dimension: rank_limit {
+    hidden: yes
     type: number
     sql: {% parameter max_rank %} ;;
   }
 
   dimension: park_acres {
+    hidden: yes
     type: number
     sql: ${TABLE}.park_acres ;;
   }

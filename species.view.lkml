@@ -2,17 +2,23 @@ view: species {
   sql_table_name: biodiversity_in_parks.species ;;
 
   dimension: species_id {
+    description: "National Parks Service park code."
     primary_key: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.Species_ID ;;
   }
 
   dimension: abundance {
+    group_label: "Species Facts"
+    description: "Commonality of sightings."
     type: string
     sql: ${TABLE}.Abundance ;;
   }
 
   dimension: category {
+    group_label: "Species Classification"
+    description: "The category a species belongs to, incl. Mammal, Bird, etc."
     type: string
     sql: ${TABLE}.Category ;;
     html:
@@ -91,22 +97,23 @@ view: species {
 
 
   dimension: order {
-    group_label: "Scientific Classification"
+    group_label: "Species Classification"
     description: "The scientific order the species belongs to."
     type: string
     sql: ${TABLE}.`Order` ;;
   }
 
   dimension: family {
-    group_label: "Scientific Classification"
+    group_label: "Species Classification"
     description: "The scientific family the species belongs to."
     type: string
     sql: ${TABLE}.Family ;;
   }
 
   dimension: scientific_name {
-    group_label: "Scientific Classification"
-    description: "Full scientific species name"
+    group_label: "Species Classification"
+    description: "Full scientific species name."
+    drill_fields: [species_drill*]
     type: string
     sql: ${TABLE}.Scientific_Name ;;
     html:
@@ -117,6 +124,8 @@ view: species {
   }
 
   dimension: common_names {
+    group_label: "Species Classification"
+    description: "Common name(s) for the species."
     label: "Common Name"
     type: string
     sql: ${TABLE}.Common_Names ;;
@@ -125,6 +134,7 @@ view: species {
 
 
   dimension: conservation_status {
+    group_label: "Species Facts"
     description: "IUCN species conservation status."
     type: string
     sql: ${TABLE}.Conservation_Status ;;
@@ -138,11 +148,14 @@ view: species {
   }
 
   dimension: nativeness {
+    group_label: "Species Facts"
+    description: "Whether the species is native to the area or non-native/invasive."
     type: string
     sql: ${TABLE}.Nativeness ;;
   }
 
   dimension: is_native {
+    hidden: yes
     type: yesno
     sql: ${nativeness} = "Native" ;;
     html:
@@ -155,6 +168,8 @@ view: species {
   }
 
   dimension: occurrence {
+    group_label: "Species Facts"
+    description: "Whether or not the species presence in the park has been confirmed (one of 'Present', 'Not Confirmed', 'Not Present (Historical)')."
     type: string
     sql: ${TABLE}.Occurrence ;;
   }
@@ -162,6 +177,7 @@ view: species {
 
   dimension: park_name {
     hidden: yes
+    description: "Park in which the species appears."
     type: string
     sql: ${TABLE}.Park_Name ;;
     link: {
@@ -177,11 +193,14 @@ view: species {
   }
 
   dimension: record_status {
+    group_label: "Species Facts"
+    description: "Usually 'Approved'."
     type: string
     sql: ${TABLE}.Record_Status ;;
   }
 
   dimension: seasonality {
+    group_label: "Species Facts"
     description: "When the species can be found in the park. Null (blank) if the species is found there year-round."
     type: string
     sql: ${TABLE}.Seasonality ;;
@@ -196,22 +215,48 @@ view: species {
   }
 
   measure: count_species {
+    label: "Number of Species"
+    description: "The count of all species, regardless of category, nativeness, or conservation status."
     type: count
     drill_fields: [species_drill*]
   }
 
+  measure: native_population {
+    label: "Number of Native Species"
+    group_label: "Number of Species by Status"
+    description: "The number of species with native status."
+    drill_fields: [species_drill*]
+    type: count
+    filters: {
+      field: species.nativeness
+      value: "Native"
+    }
+  }
+
+  measure: percent_native {
+    hidden: yes
+    group_label: "Number of Species by Status"
+    drill_fields: [species_drill*]
+    type: number
+    sql: ${native_population} / ${count_species} ;;
+    value_format_name: percent_2
+  }
 
   measure: count_species_endangered {
+    group_label: "Number of Species by Status"
+    label: "Count Endangered/Threatened"
+    description: "The number of species with IUCN Endangered, Threatened, Proposed Endangered, or Proposed Threatened status."
     type: count
     drill_fields: [species_drill*]
     filters: {
       field: species.conservation_status
-      value: "Endangered,Threatened,Proposed Endangered,Proposed Threatened,Species of Concern,Extinct"
+      value: "Endangered,Threatened,Proposed Endangered,Proposed Threatened"
     }
   }
 
   measure: count_mammals {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Mammal"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -221,7 +266,8 @@ view: species {
   }
 
   measure: count_birds {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Bird"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -231,17 +277,19 @@ view: species {
   }
 
   measure: count_plants {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Plant"
     type: count
     drill_fields: [species_drill*]
     filters: {
       field: species.category
-      value: "Vascular Plant"
+      value: "Vascular Plant,Nonvascular Plant"
     }
   }
 
   measure: count_fish {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Fish"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -251,7 +299,8 @@ view: species {
   }
 
   measure: count_amphibian {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Amphibian"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -261,7 +310,8 @@ view: species {
   }
 
   measure: count_insect {
-    group_label: "Numbers by Category"
+    group_label: "Number of Species per Category"
+    label: "Types of Insect"
     type: count
     drill_fields: [species_drill*]
     filters: {
@@ -270,25 +320,14 @@ view: species {
     }
   }
 
-  measure: native_population {
-    type: count
-    filters: {
-      field: species.nativeness
-      value: "Native"
-    }
-  }
-
-  measure: percent_native {
-    drill_fields: [species_drill*]
-    type: number
-    sql: ${native_population} / ${count_species} ;;
-    value_format_name: percent_2
-  }
 
   set:  species_drill {
     fields: [
       common_names,
       scientific_name,
+      family,
+      order,
+      category,
       is_native,
       conservation_status,
       abundance
