@@ -51,16 +51,15 @@ view: species {
   }
 
   dimension: category_image {
-    hidden: yes
     type: string
     sql: ${category} ;;
     html:
         {% if value == "Bird" %}
           <img src="http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/1024/22271-bird-icon.png" style="width:50px;height:50px;" />
         {% elsif value == "Vascular Plant" %}
-          <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:65px;" />
+          <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:60px;" />
         {% elsif value == "Mammal" %}
-          <img src="https://www.shareicon.net/data/128x128/2016/09/30/837623_bear_512x512.png" style="width:40px;height:40px;" />
+          <img src="http://worldartsme.com/images/black-bear-clipart-1.jpg" style="width:60px;height:60px;" />
         {% elsif value == "Fish" %}
           <img src="https://img.clipartxtras.com/599b9cf1ac083af16ca129f735eaff63_royalty-free-rainbow-trout-clip-art-vector-images-illustrations-trout-fish-clipart_858-1024.jpeg" style="width:50px;height:50px;" />
         {% elsif value == "Reptile" %}
@@ -71,10 +70,18 @@ view: species {
           <img src="https://b.kisscc0.com/20180705/ycw/kisscc0-the-tree-frog-amphibian-download-frog-coloured-5b3d99549b1035.3154820915307636046352.png" style="width:50px;height:50px;"/>
         {% elsif value == "Insect" %}
           <img src="https://i.pinimg.com/originals/eb/cb/ac/ebcbacda161594c9e75b47bbf07eac4e.png" style="width:50px;height:50px;"/>
+        {% elsif value == "Invertebrate" %}
+          <img src="https://melbournechapter.net/images/beetle-clipart-2.png" style="width:55px;height:40px;"/>
         {% elsif value == "Fungi" %}
           <img src="https://mbtskoudsalg.com/images/mushrooms-clipart-1.jpg" style="width:50px;height:50px;"/>
         {% elsif value == "Slug/Snail" %}
           <img src="https://img00.deviantart.net/ec6e/i/2018/269/a/a/california_banana_slug__ariolimax_californicus__by_hyaenija-dch8hom.png" style="width:50px;height:45px;"/>
+        {% elsif value == "Crab/Lobster/Shrimp" %}
+          <img src="https://melbournechapter.net/images/blue-crab-clipart-8.png" style="width:50px;height:45px;"/>
+        {% elsif value == "Algae" %}
+          <img src="http://www.gdg.ca/wp-content/uploads/2018/01/AdobeStock_136209349.png" style="width:50px;height:45px;"/>
+        {% elsif value == "Spider/Scorpion" %}
+          <img src="http://www.clker.com/cliparts/v/I/N/x/l/U/spider-md.png" style="width:45px;height:45px;"/>
         {% else %}
           {{value}}
         {% endif %}
