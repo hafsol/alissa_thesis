@@ -53,7 +53,15 @@ view: parks {
 
   dimension: state {
     description: "The US state in which a park is located"
-    drill_fields: [drill_state*]
+    drill_fields: [park_drill*]
+    group_label: "Geography"
+    type: string
+    sql: ${TABLE}.State ;;
+  }
+
+  dimension: state2 {
+    description: "The US state in which a park is located"
+    drill_fields: [park_drill*]
     group_label: "Geography"
     map_layer_name: us_states
     type: string
@@ -69,16 +77,16 @@ view: parks {
   }
 
   dimension: region {
-    drill_fields: [drill_region*]
+    drill_fields: [park_drill*]
     description: "The region in which the park is located, as defined by the NPS"
     group_label: "Geography"
     case: {
       when: {
-        sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', "CA, NV", 'AS', 'GU' ) ;;
+        sql: ${parks.state} in ('CA', 'OR', 'WA', 'ID', 'NV', 'HI', "CA, NV", 'AS', 'GU', 'CA, NV' ) ;;
         label: "Pacific West"
       }
       when: {
-        sql: ${parks.state} in ('MT', 'WY', 'UT', 'AZ', 'CO', 'NM', 'TX', 'OK') ;;
+        sql: ${parks.state} in ('MT', 'WY', 'UT', 'AZ', 'CO', 'NM', 'TX', 'OK', 'WY, MT, ID') ;;
         label: "Intermountain"
       }
       when: {
@@ -90,7 +98,7 @@ view: parks {
         label: "Northeast"
       }
       when: {
-        sql: ${parks.state} in ('KY', 'TN', 'LA', 'MS', 'AL', 'GA', 'FL', 'SC', 'NC', 'VI', 'PR') ;;
+        sql: ${parks.state} in ('KY', 'TN', 'LA', 'MS', 'AL', 'GA', 'FL', 'SC', 'NC', 'VI', 'PR', 'TN, NC') ;;
         label: "Southeast"
       }
       when: {
@@ -101,7 +109,7 @@ view: parks {
         sql: ${parks.state} = 'DC' ;;
         label: "National Capitol"
       }
-      else: "Multiple States"
+      else: "Other"
     }
 #    drill_fields: []
   }
@@ -249,12 +257,6 @@ view: parks {
           ;;
   }
 
-  # images showing animals
-
-  # define largest_parks
-
-  # define smallest_parks
-
   measure: count {
     type: count
   }
@@ -268,34 +270,20 @@ view: parks {
 
 
   measure: total_acres {
-    drill_fields: [drill_state*, drill_region*]
+    drill_fields: [park_drill*]
     label: "Acreage of the park"
     type: sum
     sql: ${park_acres} ;;
   }
 
+
   set: park_drill {
     fields: [
       park_name,
-      state,
-      region,
-      park_acres
-    ]
-  }
-
-  set: drill_region {
-    fields: [
-      state,
-      park_name,
-    ]
-  }
-
-  set: drill_state {
-    fields: [
-      park_name,
       park_acres,
-      park_code_images,
-      species.count
+      species.count,
+      state,
+      region
     ]
   }
 

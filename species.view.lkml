@@ -51,6 +51,7 @@ view: species {
   }
 
   dimension: category_image {
+    hidden: yes
     type: string
     sql: ${category} ;;
     html:
@@ -88,6 +89,7 @@ view: species {
     ;;
   }
 
+
   dimension: order {
     group_label: "Scientific Classification"
     description: "The scientific order the species belongs to."
@@ -111,11 +113,6 @@ view: species {
     {{ linked_value }}
     <a href="https://www.google.com/search?q={{ value }}" target="_new">
     <img src="https://www.google.com/s2/favicons?domain=www.google.com" height=15 width=15> </a> ;;
-    link: {
-      label: "View species profile"
-      url: "https://productday.dev.looker.com/dashboards/231?Species={{ value | url_encode }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
 
   }
 
@@ -193,7 +190,9 @@ view: species {
 ## measures
 
   measure: count {
+    hidden: yes
     type: count
+    drill_fields: [species_drill*]
   }
 
   measure: count_species {
@@ -207,7 +206,7 @@ view: species {
     drill_fields: [species_drill*]
     filters: {
       field: species.conservation_status
-      value: "Endangered"
+      value: "Endangered,Threatened,Proposed Endangered,Proposed Threatened,Species of Concern,Extinct"
     }
   }
 
@@ -291,7 +290,8 @@ view: species {
       common_names,
       scientific_name,
       is_native,
-      conservation_status
+      conservation_status,
+      abundance
     ]
   }
 
