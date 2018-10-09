@@ -206,6 +206,8 @@ view: species {
     sql: ${TABLE}.Seasonality ;;
   }
 
+
+
 ## measures
 
   measure: count {
@@ -216,7 +218,7 @@ view: species {
 
   measure: count_species {
     label: "Number of Species"
-    description: "The count of all species, regardless of category, nativeness, or conservation status."
+    description: "The count of all species."
     type: count
     drill_fields: [species_drill*]
   }
@@ -230,6 +232,18 @@ view: species {
     filters: {
       field: species.nativeness
       value: "Native"
+    }
+  }
+
+  measure: nonnative_population {
+    label: "Number of Non-Native Species"
+    group_label: "Number of Species by Status"
+    description: "The number of species with non-native status."
+    drill_fields: [species_drill*]
+    type: count
+    filters: {
+      field: species.nativeness
+      value: "Not Native"
     }
   }
 
