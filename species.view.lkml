@@ -57,7 +57,7 @@ view: species {
   }
 
   dimension: category_image {
-    hidden: yes
+    description: "Icons depicting the category each species belongs to."
     type: string
     sql: ${category} ;;
     html:
