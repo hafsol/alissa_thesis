@@ -16,7 +16,7 @@ explore: cities {
 
 explore: parks {
   group_label: "TSR Thesis: US National Parks"
-  label: "National Parks, Species, Cities"
+  label: "National Parks and Species"
   join: species {
     type: left_outer
     sql_on: ${species.park_name} = ${parks.park_name} ;;
@@ -27,10 +27,7 @@ explore: parks {
     sql_on: ${parks.park_code} = ${park_acre_ranking.park_code} ;;
     relationship: one_to_one
   }
-  join: cities {
-    sql_on: ${cities.state_name} = ${parks.state} ;;
-    relationship: many_to_one
-  }
+
 }
 
 explore: species {
