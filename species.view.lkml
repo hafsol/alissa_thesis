@@ -82,7 +82,7 @@ view: species {
         {% elsif value == "Fungi" %}
           <img src="https://mbtskoudsalg.com/images/mushrooms-clipart-1.jpg" style="width:50px;height:50px;"/>
         {% elsif value == "Slug/Snail" %}
-          <img src="https://img00.deviantart.net/ec6e/i/2018/269/a/a/california_banana_slug__ariolimax_californicus__by_hyaenija-dch8hom.png" style="width:50px;height:45px;"/>
+          <img src="https://image.shutterstock.com/shutterstock/photos/1310669822/display_1500/stock-vector-vector-illustration-of-cute-snail-cartoon-1310669822.jpg" style="width:50px;height:45px;"/>
         {% elsif value == "Crab/Lobster/Shrimp" %}
           <img src="https://melbournechapter.net/images/blue-crab-clipart-8.png" style="width:50px;height:45px;"/>
         {% elsif value == "Algae" %}
