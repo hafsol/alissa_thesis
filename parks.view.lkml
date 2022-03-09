@@ -10,6 +10,17 @@ view: parks {
     sql: ${TABLE}.Park_Code ;;
   }
 
+
+  dimension: park_json {
+    description: "National Parks Service park code."
+    # hidden: yes
+    # map_layer_name: natparks
+    # primary_key: yes
+    type: string
+    sql: ${TABLE}.natparks ;;
+  }
+
+
   dimension: park_name {
     description: "The park's official name."
     type: string

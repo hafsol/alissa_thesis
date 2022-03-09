@@ -65,7 +65,7 @@ view: species {
           <img src="http://icons.iconarchive.com/icons/google/noto-emoji-animals-nature/1024/22271-bird-icon.png" style="width:50px;height:50px;" />
         {% elsif value == "Vascular Plant" %}
           <img src="https://avatanplus.com/files/resources/mid/56ea94de9ffa2153845585bf.png" style="width:75px;height:60px;" />
-        {% elsif value == "Mammal" %}
+        {% elsif value == "Mammal" %}es I'll
           <img src="http://worldartsme.com/images/black-bear-clipart-1.jpg" style="width:60px;height:60px;" />
         {% elsif value == "Fish" %}
           <img src="https://img.clipartxtras.com/599b9cf1ac083af16ca129f735eaff63_royalty-free-rainbow-trout-clip-art-vector-images-illustrations-trout-fish-clipart_858-1024.jpeg" style="width:50px;height:50px;" />
