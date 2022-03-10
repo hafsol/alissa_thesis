@@ -285,6 +285,16 @@ view: parks {
     sql: ${park_acres} ;;
   }
 
+  measure: combination {
+    # label: "Cualquier info"
+    description: "combinacion de varios campos para mostrar todos juntos en el tooltip"
+    type: number
+    value_format: "#,##0"
+    sql: ${parks.total_acres} ;;
+    html: {{ rendered_value }};;
+    # html: <font size="10">Total acres: {{ rendered_value }}, Percentage: {{ size_vs_territory._rendered_value }}, Name: {{ name_and_size_list }};;
+  }
+
 
   set: park_drill {
     fields: [
